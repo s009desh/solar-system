@@ -113,3 +113,12 @@ jobs:
           export IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' solar-system-app)
           echo "Container IP: $IP"
 
+        
+      - name: Build and test
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ vars.DOCKER_USERNAME}}/solar.system:${{github.sha}}
+        
+
