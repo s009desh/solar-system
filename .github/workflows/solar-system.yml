@@ -1,5 +1,3 @@
-
-
 name: Solar System Workflow
 
 on: 
@@ -15,55 +13,66 @@ env:
   MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
     
 jobs:
-    unit-testing:
-        name: Unit Testing
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v4
+  unit-testing:
+    name: Unit Testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-        - name: Setup NodeJS Version
-          uses: actions/setup-node@v3
-          with:
-            node-version: 20
+      - name: Setup NodeJS Version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+        
+      - name: Cache NPM dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Dependencies
+        run: npm install
     
-        - name: Install Dependencies
-          run: npm install
-    
-        - name: Unit Testing
-          id: nodejs-unit-testing
-          run: npm test
+      - name: Unit Testing
+        id: nodejs-unit-testing
+        run: npm test
 
-        - name: archieve test result
-          if: always()
-          uses: actions/upload-artifact@v3
-          with:
-            name: Mocha-test-result
-            path: test-results.xml
+      - name: Archive Test Result
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Mocha-test-result
+          path: test-results.xml
 
-    code-coverage:
-        name: Code coverage
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout repositiory
-          uses: actions/checkout@v4
+  code-coverage:
+    name: Code Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-        - name: Setup NodeJS Version
-          uses: actions/setup-node@v3
-          with:
-            node-version: 20
+      - name: Setup NodeJS Version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
 
-        - name: install dependencies
-          run: npm install
+      - name: Cache NPM dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
 
-        - name: Check code coverage
-          continue-on-error: true
-          run: npm run coverage
+      - name: Install Dependencies
+        run: npm install
 
-        - name: Archive test Result
-          uses: actions/upload-artifact@v3
-          with:
-            name: Code-coverage-Result
-            path: coverage
-            retention-days: 5
-  
+      - name: Check Code Coverage
+        continue-on-error: true
+        run: npm run coverage
+
+      - name: Archive Coverage Result
+        uses: actions/upload-artifact@v3
+        with:
+          name: Code-Coverage-Result
+          path: coverage
+          retention-days: 5
