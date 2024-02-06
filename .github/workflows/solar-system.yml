@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          
+
         
       - name: Cache NPM dependencies
         uses: actions/cache@v3
@@ -77,3 +77,17 @@ jobs:
           name: Code-Coverage-Result
           path: coverage
           retention-days: 5
+
+  docker:
+    name: Containerization
+    needs: [unit-testing, code-coverage]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Docker login
+        uses: docker/login-actions@v2.2.0
+        with:
+          username: ${{vars.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_PASSWORD}}
