@@ -167,6 +167,10 @@ jobs:
         - name: start minikube
           id: minikube
           uses: medyagh/setup-minikube@latest
+
+        - name: Enable Ingress
+          run: |
+            minikube addons enable ingress
              
         - name: kubectl checking 
           run: |
