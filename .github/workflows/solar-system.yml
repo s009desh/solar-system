@@ -180,8 +180,8 @@ jobs:
         - name: INGRESS IP 
           run: |
             INGRESS_IP=$(minikube ip)
-            echo "Ingress IP: $INGRESS_IP"
-            echo "::set-env name=INGRESS_IP::$INGRESS_IP"
+            echo "Ingress IP" >> "$INGRESS_IP"
+            
 
         - name: Replace tokens in a manifest file
           uses: cschleiden/replace-tokens@v1
