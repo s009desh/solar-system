@@ -164,19 +164,14 @@ jobs:
         - name: checkout
           uses: actions/checkout@v4
 
-        - name: Install kubectl cli
-          uses: azure/setup-kubectl@v3
-          with:
-             version: 'v1.26.0'
-
-        
-        - name: Set the  kubeconfig file
-          uses: azure/k8s-set-context@v3
-          with:
-            method: kubeconfig
-            kubeconfig: ${{ secrets.KUBECONFIG }}
+        - name: start minikube
+          id: minikube
+          uses: medyagh/setup-minikube@latest
              
-        - run: kubectl version --short -o yaml 
+        - name: kubectl checking 
+          run: |
+            kubectl get nodes
+            kubectl get pods
 
 
 
