@@ -179,7 +179,7 @@ jobs:
              
         - name: fetch kubernetes cluster
           run: |
-            kubectl version --short 
+            kubectl get nodes
             echo ------------------------------
             kubectl get nodes
              
