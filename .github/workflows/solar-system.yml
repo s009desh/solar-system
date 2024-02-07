@@ -170,7 +170,7 @@ jobs:
              version: 'v1.26.0'
 
         
-        - name: Set kubeconfig file
+        - name: Set the  kubeconfig file
           uses: azure/k8s-set-context@v3
           with:
             method: kubeconfig
