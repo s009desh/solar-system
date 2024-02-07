@@ -176,13 +176,7 @@ jobs:
             method: kubeconfig
             kubeconfig: ${{secrets.KUBECONFIG}}
              
-             
-        - name: fetch kubernetes cluster
-          run: |
-            kubectl get nodes
-            echo ------------------------------
-            kubectl get nodes
-             
+        - run: kubectl version --short -o yaml
 
 
 
