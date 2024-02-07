@@ -176,7 +176,7 @@ jobs:
             method: kubeconfig
             kubeconfig: ${{secrets.KUBECONFIG}}
              
-        - run: kubectl version --short -o yaml
+        - run: kubectl version --short -o yaml 
 
 
 
