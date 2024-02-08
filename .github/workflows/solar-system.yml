@@ -180,7 +180,7 @@ jobs:
         - name: INGRESS IP 
           run: |
             INGRESS_IP=$(minikube ip)
-            echo "Ingress IP" >> "$INGRESS_IP"
+            echo "Ingress IP: $INGRESS_IP" >> "$INGRESS_IP"
             
 
         - name: Replace tokens in a manifest file
@@ -198,7 +198,7 @@ jobs:
 
         - name: Check files
           run:
-            cat kubernetes/development/*.yaml
+            cat kubernetes/development/*.yaml 
 
           
 
