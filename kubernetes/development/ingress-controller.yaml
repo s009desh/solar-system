@@ -4,8 +4,7 @@ metadata:
   name: nginx-ingress-controller
   namespace: development
 spec:
-  replicas: _{_REPLICAS_}_
-  selector:
+  replicas: 2
     matchLabels:
       app: nginx-ingress
   template:
