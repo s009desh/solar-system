@@ -21,14 +21,12 @@ jobs:
         - name: checkout
           uses: actions/checkout@v4
 
-        - name: Azure CLI
-          uses: azure/CLI@v1
+        - name: Azure Login
+          uses: azure/login@v1
           with:
-            azcliversion: latest
-            inlineScript: |
-              az login
-              az login --service-principal -u odl_user_1225434@cloudlabs4kodeKloud.onmicrosoft.com -p bnnr78TUT*v9 --tenant d5cb8a33-eea4-444a-9177-3c24547f595d
-
+            creds: ${{ secrets.AZURE_CLIENT_ID }}
+            password: ${{ secrets.AZURE_CLIENT_SECRET }}
+            tenant: ${{secrets.TENANT_ID}}
 
 
           
