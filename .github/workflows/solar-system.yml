@@ -29,9 +29,7 @@ jobs:
         - name: Azure Login
           uses: azure/login@v1
           with:
-            client-id: "976b8dac-4d6a-41df-bd89-d11d82fe8f45 "
-            tenant-id: "d5cb8a33-eea4-444a-9177-3c24547f595d"
-            subscription-id: "269af900-c1d0-4f05-abf3-fb53e68a44f8"
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
 
         - name: Azure CLI script
           uses: azure/CLI@v1
