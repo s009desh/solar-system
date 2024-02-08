@@ -35,7 +35,7 @@ jobs:
           run: az aks get-credentials --resource-group ODL-azure-1225434 --name AKS-1kodekloudapp
         
         - name: List Azure Subscriptions
-          run: az account list
+          run: kubectl get nodes
     
 
           
