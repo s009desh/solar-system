@@ -37,7 +37,7 @@ jobs:
         
         - name: List Azure Subscriptions
           run: | 
-            kubectl apply -n ${{ vars.NAMESPACE }} -f ingress-controller.yaml
+            kubectl apply -n ${{ vars.NAMESPACE }} -f kubernetes/development/ingress-controller.yaml
             kubectl -n ${{ vars.NAMESPACE }} get services ingress-nginx-controller
 
     
