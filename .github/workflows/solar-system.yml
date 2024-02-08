@@ -30,6 +30,10 @@ jobs:
             az login --username "odl_user_1225434@cloudlabs4kodeKloud.onmicrosoft.com" --password "bnnr78TUT*v9"
             az account set --subscription "269af900-c1d0-4f05-abf3-fb53e68a44f8"
     
+        
+        - name: Get AKS Credentials
+          run: az aks get-credentials --resource-group ODL-azure-1225434 --name AKS-1kodekloudapp
+        
         - name: List Azure Subscriptions
           run: az account list
     
