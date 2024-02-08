@@ -167,7 +167,7 @@ jobs:
         - name: Login to Azure
           run: |
             az login --username "odl_user_1225699@cloudlabs4kodeKloud.onmicrosoft.com" --password "uccb96ZEU*zA"
-            
+            az account set --subscription "fa31592b-96b0-4bad-bcd1-439a3555fc9c"
     
         
         - name: Get AKS Credentials
