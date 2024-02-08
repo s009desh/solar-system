@@ -17,7 +17,7 @@ spec:
         app: solar-system
     spec:
       containers:
-      - image: _{_K8S_IMAGE_}_
+      - image: ${{ vars.DOCKER_USERNAME}}/solar.system:${{github.sha}}
         imagePullPolicy: Always
         name: solar-system
         ports:

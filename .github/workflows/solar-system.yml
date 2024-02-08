@@ -36,7 +36,10 @@ jobs:
           run: az aks get-credentials --resource-group ODL-azure-1225434 --name AKS-1kodekloudapp
         
         - name: List Azure Subscriptions
-          run: kubectl get nodes
+          run: | 
+            kubectl apply -n ${{ vars.NAMESPACE }} -f ingress-controller.yaml
+            kubectl -n ${{ vars.NAMESPACE }} get services ingress-nginx-controller
+
     
         - name: INGRESS IP 
           run: |
