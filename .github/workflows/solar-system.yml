@@ -26,18 +26,12 @@ jobs:
         - name: checkout
           uses: actions/checkout@v4
 
-        - name: Azure Login
-          uses: azure/login@v1
-          with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-        - name: Azure CLI script
-          uses: azure/CLI@v1
-          with:
-            azcliversion: latest
-            inlineScript: |
-              az account show
-
+        - name: Login to Azure
+          run: |
+            az login --username "odl_user_1225434@cloudlabs4kodeKloud.onmicrosoft.com" --password "bnnr78TUT*v9"
+    
+        - name: List Azure Subscriptions
+          run: az account list
 
           
 
