@@ -180,7 +180,7 @@ jobs:
         - name: INGRESS IP 
           run: |
             INGRESS_IP=$(minikube ip)
-            echo "Ingress IP: $INGRESS_IP" >> "$GITHUB_ENV"
+            echo "INGRESS_IP=\"$INGRESS_IP\"" >> "$GITHUB_ENV"
             
 
         - name: Replace tokens in a manifest file
