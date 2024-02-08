@@ -11,11 +11,16 @@ env:
   MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
   MONGO_USERNAME: superuser
   MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+
+permissions:
+    id-token: write
+    contents: read
+
     
 jobs:
-
+  
   dev-deploy:
-      
+
        runs-on: ubuntu-latest
        steps:
         - name: checkout
@@ -24,10 +29,16 @@ jobs:
         - name: Azure Login
           uses: azure/login@v1
           with:
-            creds: ${{ secrets.AZURE_CLIENT_SECRET }}
-            auth_type: service-principal
             client-id: ${{ secrets.AZURE_CLIENT_ID }}
             tenant-id: ${{ secrets.TENANT_ID }}
+            subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+        - name: Azure CLI script
+          uses: azure/CLI@v1
+          with:
+            azcliversion: latest
+            inlineScript: |
+              az account show
 
 
           
