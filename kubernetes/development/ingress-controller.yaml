@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-ingress-controller
-  namespace: _{_NAMESPACE_}_
+  namespace: development
 spec:
   replicas: _{_REPLICAS_}_
   selector:
